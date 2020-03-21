@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.clc.zone","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"right","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前端开发博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Clcs Blog">
+<meta property="og:url" content="https://blog.clc.zone/index.html">
+<meta property="og:site_name" content="Clcs Blog">
+<meta property="og:description" content="前端开发博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Hi clc">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="Web前端">
+<meta property="article:tag" content="前端blog">
+<meta property="article:tag" content="clc">
+<meta property="article:tag" content="front-end">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.clc.zone/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Clcs Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Clcs Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">clcs front-end blog</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.clc.zone/2018/01/21/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-CSRF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Hi clc">
+      <meta itemprop="description" content="前端开发博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Clcs Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/01/21/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-CSRF/" class="post-title-link" itemprop="url">前端安全-CSRF</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-01-21 20:12:26" itemprop="dateCreated datePublished" datetime="2018-01-21T20:12:26+08:00">2018-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-21 16:42:15" itemprop="dateModified" datetime="2020-03-21T16:42:15+08:00">2020-03-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h2><p>CSRF (Cross-site request forgery) 跨站请求伪造。 利用浏览器的同源策略, 盗用用户身份凭证, 对目标网站进行操作。</p>
+<h3 id="CSRF-攻击过程"><a href="#CSRF-攻击过程" class="headerlink" title="CSRF 攻击过程"></a>CSRF 攻击过程</h3><ul>
+<li>用户登录了 a.com, 浏览器保留了登录凭证</li>
+<li>攻击者引诱用户访问攻击网站 b.com</li>
+<li>b.com 向 a.com 发出了一个请求, 例如: a.com?add-user=xxxxxx</li>
+<li>a.com 接收到请求, 进行验证, 有有效凭证, a.com 认为是用户发送的请求</li>
+<li>a.com 执行了操作 add-user</li>
+<li>攻击完成, 用户并不知道</li>
+</ul>
+<h3 id="攻击类型"><a href="#攻击类型" class="headerlink" title="攻击类型"></a>攻击类型</h3><ul>
+<li>Get类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;https:&#x2F;&#x2F;bank.com?act&#x3D;xxx&quot;&gt;</span><br></pre></td></tr></table></figure>
+用户访问页面带有如上图片, 浏览器自动请求地址, 攻击完成</li>
+<li>Post类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action&#x3D;&quot;https:&#x2F;&#x2F;bank.com&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line">  &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;account&quot; value&#x3D;&quot;xiaoming&quot; &#x2F;&gt;</span><br><span class="line">  &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;amount&quot; value&#x3D;&quot;100&quot; &#x2F;&gt;</span><br><span class="line">  &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;act&quot; value&#x3D;&quot;transfer&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;script&gt; document.forms[0].submit(); &lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+用户访问页面, 表单自动提交。</li>
+<li>链接类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;https:&#x2F;&#x2F;bank.com?act&#x3D;xxx&quot;&gt;点我送100话费&lt;&#x2F;a&gt; (本域攻击)</span><br><span class="line">&lt;a href&#x3D;&quot;https:&#x2F;&#x2F;third.com&quot;&gt;点我送100话费&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
+点击类型常见于社区类网站, 通过诱导用户点击<br>这也是社区类网站或者论坛对外链都是严格控制或者不可以发布外链的原因</li>
+</ul>
+<h3 id="攻击场景"><a href="#攻击场景" class="headerlink" title="攻击场景"></a>攻击场景</h3><p>有一天, 小明登录了 Gmail 邮箱, 悠闲的看着邮件。 突然收到了一封陌生邮件, 特价甩卖, 比特币 888 元一个。<br>英明神武的小明肯定不相信, 但还是点开了链接进去瞧瞧。进入后是一个空页面, 于是小明关掉网页。<br>过了一段时间, 小明突然发现自己某网站的密码被修改了, 里面的金币也被消费完了。<br>小明点开邮件链接进入网页, 看似风平浪静, 但其实黑客已经得手了(所以为什么点开邮件的链接会有安全提示)。<br>什么都没有的空白页, 其实已经向攻击目标发送了一个请求。设置了过滤规则, 所有的邮件都将转发至 <a href="mailto:hacku@gmail.com">hacku@gmail.com</a></p>
+<h3 id="一些历史事件"><a href="#一些历史事件" class="headerlink" title="一些历史事件"></a>一些历史事件</h3><p><a href="https://www.davidairey.com/google-gmail-security-hijack/" target="_blank" rel="noopener">Gmail security hijack</a><br><a href="https://cloud.tencent.com/developer/article/1425657" target="_blank" rel="noopener">Youtube notifications</a><br><a href="https://blog.ripstech.com/2019/wordpress-csrf-to-rce/" target="_blank" rel="noopener">wordpress CSRF to Remote Code Execution</a></p>
+<h3 id="CSRF-特点"><a href="#CSRF-特点" class="headerlink" title="CSRF 特点"></a>CSRF 特点</h3><ul>
+<li>攻击一般从第三方发起, 也有可能本域发起</li>
+<li>攻击者只能冒用用户凭证进行操作, 无法窃取数据</li>
+<li>需要诱导用户进入攻击网站</li>
+</ul>
+<h3 id="防御策略"><a href="#防御策略" class="headerlink" title="防御策略"></a>防御策略</h3><p><strong>CSRF token</strong><br>针对CSRF无法获取数据的特点, 生成加密token, 并在调用接口时验证</p>
+<p><strong>实现流程</strong></p>
+<ul>
+<li>用户打开页面时, 由后端生成加密token并插入到页面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;hidden&quot; value&#x3D;&quot;eW1kISE&#x3D;&quot; name&#x3D;&quot;token&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>客户端发送请求时, 携带该token<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const token &#x3D; document.querySelector(&#39;token&#39;).value</span><br><span class="line">fetch(&#39;https:&#x2F;&#x2F;yourdomain.com&#39;, &#123;</span><br><span class="line">  method: &#39;POST&#39;,</span><br><span class="line">  headers: new Headers(&#123;</span><br><span class="line">    &#39;Content-Type&#39;: &#39;application&#x2F;json&#39;</span><br><span class="line">  &#125;),</span><br><span class="line">  body: JSON.stringify(&#123;</span><br><span class="line">    token,</span><br><span class="line">    sid: &#39;xxxx&#39;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>后端获取 token, 校验是否过期和一致</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>实施相对麻烦 </li>
+<li>如果有XSS, 防御无效</li>
+<li>token 更新麻烦</li>
+<li>后端需要redis集中存储来管理token</li>
+</ul>
+<p><strong>Header token</strong><br>这也是使用token进行验证, 和上一种不同在于token放在头部</p>
+<p><strong>实现流程</strong></p>
+<ul>
+<li>用户登录后后端生成用户凭证token并返回, 客户端取得 token=eW1kISE= 并存在 Storage<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; login 取得 token 存储</span><br><span class="line">fetch(&#39;https:&#x2F;&#x2F;a.com?a&#x3D;login&#39;)</span><br><span class="line">.then(res &#x3D;&gt; &#123;</span><br><span class="line">  window.localStorage.setItem(&#39;token&#39;, res.token)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>客户端发送接口时, 从 Storage 取得 token, 并加入到自定义头部 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 发送请求时加入 token</span><br><span class="line">fetch(&#39;https:&#x2F;&#x2F;a.com?a&#x3D;send&#39;, &#123;</span><br><span class="line">  method: &#39;POST&#39;,</span><br><span class="line">  headers: new Headers(&#123;</span><br><span class="line">    &#39;token&#39;: window.localStorage.getItem(&#39;token&#39;)</span><br><span class="line">  &#125;),</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>后端读取header token字段, 解密字段, 校验token有效性, 并与缓存数据进行比较</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>无需额外存储</li>
+<li>可以统一出口</li>
+<li>token 更新相对简单</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>如果有XSS, 防御无效</li>
+</ul>
+<p><strong>Dobule cookies</strong><br>双重cookies验证。 同样针对CSRF无法获取数据的特点, 对cookie进行2次验证。  </p>
+<p><strong>实现流程</strong></p>
+<ul>
+<li>后端返回cookie, 带有csrfcookie=eW1kISE=(随机串)</li>
+<li>客户端发送接口时, 获取csrfcookie, 并加入到接口参数发送(POST <a href="https://hostname.comcsrfcookie=eW1kISE=" target="_blank" rel="noopener">https://hostname.comcsrfcookie=eW1kISE=</a>)</li>
+<li>后端验证参数csrfcookie是否与cookie一致</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>相比CSRF token, 实施相对简单</li>
+<li>无需额外的存储</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>不同域名无法实施, 例如 a.com 的接口地址是 api.a.com。这是非常常见的情况</li>
+<li>如果有XSS, 防御无效</li>
+</ul>
+<p>Csrf token</p>
+<p>Same site</p>
+<p>从攻击原理来看, 网站本身并没有办法防止攻击发生, 只能防御攻击。<br>网站加强防御的同时, 用户也加强安全意识, 那么攻击就无机可乘</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>2020.1.20</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hi clc"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Hi clc</p>
+  <div class="site-description" itemprop="description">前端开发博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/besfro" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;besfro" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Lengchars@gmail.com" title="E-Mail → mailto:Lengchars@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-superpowers"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Clcs Blog</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a>
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
