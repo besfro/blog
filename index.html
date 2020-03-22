@@ -292,7 +292,7 @@
 <li>客户端发送接口时, 需要从 cookies 获取 csrfcookie, 并加入到接口参数发送 (POST //hostname.comc?srfcookie=eW1kISE=)</li>
 <li>后端验证参数 csrfcookie 是否与 cookie 一致</li>
 </ul>
-<p>该方法实施起来相对简单, 也无需额外存储。但只适用与接口是同域, 例如 <a href="http://www.a.com" target="_blank" rel="noopener">www.a.com</a> 的接口地址是 api.a.com, 就实施。这是非常常见的情况。当然如果是 domain=a.com, 将 cookies 存在顶域是可以实现的, 但通常不会这么做</p>
+<p>该方法实施起来相对简单, 也无需额外存储。但只适用与接口是同域, 例如 a.com 的接口地址是 api.a.com, 就实施。这是非常常见的情况。当然如果是 domain=a.com, 将 cookies 存在顶域是可以实现的, 但通常不会这么做</p>
 <div class="note info">
             <p>如果有 XSS 漏洞防御无效</p>
           </div>
@@ -333,7 +333,7 @@
 
 <p>如果设置了 strict, 浏览器任何跨域都不会携带 cookie, 即使跳转进入也不会携带。 那也就没有 CSRF 攻击的机会了。 对于子域的跳转, cookie 也不会保留, 用户必须重新登录, 对于用户来讲体验不好</p>
 <p>如果设置 lax, 则外部跳转时会保留 cookie。 用户从外部或则子域进来时不需要重新登录</p>
-<p>SameSite不支持子域名, 但项目很常见的一种情况, 站点和接口不同域名, 例如 <a href="http://www.a.com" target="_blank" rel="noopener">www.a.com</a> 接口地址是 api.a.com。对于这种情况就不能通过SameSite来防御, 但如果相同的话 SameSite 实施也比较方便</p>
+<p>SameSite不支持子域名, 但项目很常见的一种情况, 站点和接口不同域名, 例如 a.com 接口地址是 api.a.com。对于这种情况就不能通过SameSite来防御, 但如果相同的话 SameSite 实施也比较方便</p>
 <h3 id="一些历史事件"><a href="#一些历史事件" class="headerlink" title="一些历史事件"></a>一些历史事件</h3><p><a href="https://www.davidairey.com/google-gmail-security-hijack/" target="_blank" rel="noopener">Gmail security hijack</a><br><a href="https://cloud.tencent.com/developer/article/1425657" target="_blank" rel="noopener">Youtube notifications</a><br><a href="https://blog.ripstech.com/2019/wordpress-csrf-to-rce/" target="_blank" rel="noopener">wordpress CSRF to Remote Code Execution</a></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>CSRF 是一种危害较大的攻击, 以上防御方法可以很大程度的防御攻击。各方法的实施难度, 效果, 适用情况都不同。 没有完美的解决方案, 我们只能通过实际情况选择最合适的方法。</p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="noopener">Wiki CSRF</a><br><a href="https://www.ibm.com/developerworks/cn/web/1102_niugang_csrf/" target="_blank" rel="noopener">IBM CSRF 攻击的应对之道</a><br><a href="hhttps://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies#SameSite_Cookies">MDN SameSite Cookie</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">MDN Same-origin-policy</a></p>
