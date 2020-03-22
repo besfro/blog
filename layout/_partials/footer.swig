@@ -20,6 +20,7 @@
   <span class="author" itemprop="copyrightHolder">{{ theme.footer.copyright or author }}</span>
 
   {%- if config.symbols_count_time.total_symbols %}
+  {%- if config.symbols_count_time.show_in_footer %}
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
@@ -29,8 +30,10 @@
     {%- endif %}
     <span title="{{ __('symbols_count_time.count_total') }}">{{ symbolsCountTotal(site) }}</span>
   {%- endif %}
+  {%- endif %}
 
   {%- if config.symbols_count_time.total_time %}
+  {%- if config.symbols_count_time.show_in_footer %}
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
@@ -39,6 +42,7 @@
       <span class="post-meta-item-text">{{ __('symbols_count_time.time_total') }} &asymp;</span>
     {%- endif %}
     <span title="{{ __('symbols_count_time.time_total') }}">{{ symbolsTimeTotal(site, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
+  {%- endif %}
   {%- endif %}
 </div>
 
