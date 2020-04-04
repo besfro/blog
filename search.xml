@@ -1,10 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>谷歌将逐步停止支持 User Agent</title>
+    <url>/%E8%B0%B7%E6%AD%8C%E5%B0%86%E9%80%90%E6%AD%A5%E5%81%9C%E6%AD%A2%E6%94%AF%E6%8C%81-User-Agent/</url>
+    <content><![CDATA[<p>谷歌将逐步停止支持 User Agent, Chrome 将从 v81 开始逐步淘汰 User Agent, 2020 年 9 月中旬发布的 v85 预计将会完全移除用户代理字符串</p>
+<a id="more"></a>
+
+<p>每一个 HTTP 请求, 都会将 User Agent 作为请求头的一部分发送到服务器。但是这个头字段现在变得越来越长和难以理解<br>在 Chrome on iOS 被标识为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">User-Agent: Mozilla&#x2F;5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit&#x2F;605.1.15 (KHTML, like Gecko) CriOS&#x2F;69.0.3497.105 Mobile&#x2F;15E148 Safari&#x2F;605.1</span><br></pre></td></tr></table></figure>
+<p>在 Chrome on Android 被标识为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">User-Agent: Mozilla&#x2F;5.0 (Linux; Android 9; Pixel 2 XL Build&#x2F;PPP3.180510.008) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;67.0.3396.87 Mobile Safari&#x2F;537.36</span><br></pre></td></tr></table></figure>
+<p>这真是一大串字符, 包含了很多信息。 Safari 采取了一些措施对该字符串进行删减, Chrome 使用了另一种方式, 具体有以下改变 </p>
+<ul>
+<li>用户代理将冻结<ul>
+<li>navigator.appVersion</li>
+<li>navigator.platform</li>
+<li>navigator.productSub</li>
+<li>navigator.vendor</li>
+<li>navigator.userAgent  </li>
+<li>-</li>
+</ul>
+</li>
+<li>引入几个头部字段 <ul>
+<li>Sec-CH-UA: “Chrome”; v=”73”</li>
+<li>Sec-CH-UA-Platform: “Windows”</li>
+<li>Sec-CH-UA-Arch: “ARM64”</li>
+<li>Sec-CH-UA-Model: “Pixel 2 XL”</li>
+<li><strong>Sec-CH-UA-Mobile: ?1</strong></li>
+<li>Sec-CH-UA-Full-Version: “73.1.2343B.TR”  </li>
+<li>-</li>
+</ul>
+</li>
+<li><strong>navigator.getUserAgent()</strong> 将被注入到 Javascript APIs</li>
+</ul>
+<p>2020 年 9 月中旬发布的 Chrome85 预计将会完全移除用户代理字符串。其它浏览器供应商，包括 Mozilla Firefox、Microsoft Edge 以及 Apple Safari，都表示支持这一举措。但目前还不清楚他们何时会采取行动。</p>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><a href="https://www.infoq.cn/article/A3flGDTKpszgHKRQoQMQ" target="_blank" rel="noopener">Infoq - Chrome Phasing out Support for User Agent</a><br><a href="https://github.com/WICG/ua-client-hints" target="_blank" rel="noopener">WIGG ua-client-hints</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Browser_detection_using_the_user_agent" target="_blank" rel="noopener">Browser_detection_using_the_user_agent</a></p>
+]]></content>
+      <categories>
+        <category>news</category>
+      </categories>
+      <tags>
+        <tag>user agent</tag>
+        <tag>chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript是如何执行一段代码的</title>
+    <url>/Javascript%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E7%9A%84/</url>
+    <content><![CDATA[<h4 id="介绍下-Javascript"><a href="#介绍下-Javascript" class="headerlink" title="介绍下 Javascript"></a>介绍下 Javascript</h4><h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><h4 id="函数执行上下文"><a href="#函数执行上下文" class="headerlink" title="函数执行上下文"></a>函数执行上下文</h4><h4 id="子函数"><a href="#子函数" class="headerlink" title="子函数"></a>子函数</h4><h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4>]]></content>
+  </entry>
+  <entry>
+    <title>PWA 对比 Native 谁更胜一筹</title>
+    <url>/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/</url>
+    <content><![CDATA[<p>自诞生以来, 渐进式 Web 应用 (PWA) 已经取得了可观的成就。PWA 的加载速度比其他应用更快, 并且它们的体积也不大。你知道优步的 PWA 在 <strong>2G</strong> 网络上只需 <strong>3</strong> 秒钟即可加载完毕吗</p>
+<a id="more"></a>
+
+<h4 id="PWA-的强大能力"><a href="#PWA-的强大能力" class="headerlink" title="PWA 的强大能力"></a>PWA 的强大能力</h4><p>在将移动网站重建为 PWA 之后, Pinterest(<a href="https://www.infoq.cn/article/pinterest-progressive-web-app-performance-case-study" target="_blank" rel="noopener">详细案例</a>)  的参与度增加了 <strong>60％</strong>。<br>Tinder 的加载时间从 11.91 秒减少到 <strong>4.69 秒</strong>。<br>Bookmyshow 的 PWA 体积只有其 iOS 应用的 <strong>108</strong> 分之一, 是 Android 应用的 <strong>54</strong> 分之一。<br>你知道为什么 PWA 能做到这一切吗？在回答这个问题之前, 让我们先来了解 PWA 的含义：</p>
+<p>渐进式 Web 应用 是使用 HTML、CSS 和 Javascript 等现代技术开发的。PWA 是能提供原生体验的网站。简而言之, 它们是 Web 应用。</p>
+<p>我们知道 PWA 是基于一个脚本运行的, 该脚本被称为 Service worker, 其在后台独立于网站运行。这种方法提供了定期的后台同步、推送通知和丰富的办公体验。</p>
+<p>对于应用开发人员来说, 开发这种应用是很容易的, 因为他们不需要像开发Native那样学习新的编程语言。不需要安装开发环境, 因为所有现代浏览器都支持 PWA。</p>
+<h4 id="PWA、Native-各有优点"><a href="#PWA、Native-各有优点" class="headerlink" title="PWA、Native 各有优点"></a>PWA、Native 各有优点</h4><p>PWA 的优点：渐进式 Web 应用速度快、可靠、能减少加载时间并提供出色的用户参与度。  </p>
+<p>毫无疑问, 渐进式 Web 应用是有很多益处的。根据上面引用的一些数据, 它们也比Native更好。在分析Native与 PWA 的区别之前, 我们先来了解Native的含义。  </p>
+<p>Native程序 这个术语特指 iOS 和 Android 应用程序, 或所有其他类型的移动应用。这些应用是为特定平台构建的, 并使用专用的编程语言来编写。  </p>
+<p>这使它们能够在特定的操作系统上无缝运行, 因为它们使用了对应操作系统的工具和框架。当 Android 应用开发人员选择了要开发一款应用的平台（Android）后, 他们就会根据这个平台硬件的独特能力来编写代码。  </p>
+<p>Native的好处 包括稳健的安全特性、更少的电池消耗, 并且很容易在应用程序商店中展示上架。   </p>
+<h4 id="PWA-vs-Native"><a href="#PWA-vs-Native" class="headerlink" title="PWA vs Native"></a>PWA vs Native</h4><p>简单了解了这两种类型的应用程序后, 你认为哪种类型的应用更适合你的业务？下面我们来从业务的角度上对比这些应用。 </p>
+<p><img src="/images/posts/pwa.native.png" alt="pwa native compare"></p>
+<p>PWA 与 Native 对比 #1：用户体验<br>PWA 允许你在浏览器和设备上安装的应用中提供相同的界面, 它不需要用户去学习多个界面。另一方面, Native 需要更多的存储空间, 这会影响智能手机空间有限的用户, 削弱他们的用户体验。</p>
+<p>PWA 与 Native 对比 #2：安全性<br>与 PWA 不同, Native可以访问设备上的所有必要信息, 这些应用嵌入了可确保高度安全的传输层（TLS）证书。对于 PWA 来说, 这些应用需要自己的认证手段。</p>
+<p>PWA 与 Native 对比 #3：加载速度<br>即使设备未连接到 Internet, PWA 也可以提供更快的加载速度, 这是因为它们使用了 service worker 脚本来缓存数据、管理请求和存储外壳数据。加载速度是提升参与度和保留率背后的一大要素, 因此在这个指标方面, PWA 对比 Native 占了上风。</p>
+<p>PWA 与 Native 对比 #4：应用商店可见性<br>PWA 在应用商店上发布的流程更为复杂, 使用 PWA 发布时, 你必须简短说明一下它的原生功能, 另外你还需要有效的证据证明你是合法注册企业。Native 不需要这些手续即可在应用商店中上架。</p>
+<p>PWA 与 Native 对比 #5：开发成本<br>开发 PWA 所需的时间非常少, 从而降低了总体开发成本。另一方面, Native的开发成本更高, 因为开发人员必须根据操作系统的新特性, 花费更多的时间和精力来更新应用。</p>
+<p>PWA 与 Native 对比 #6：在线可见性<br>从上文可知, Native 在应用商店中上架要容易得多。但由于 PWA 的天然属性, 它们在网络上获得关注度会更容易。由于 PWA 是模仿网站的应用, 你可以在互联网找到这些应用, 它们的可见性不只局限于应用商店。</p>
+<p><img src="/images/posts/pwa.vs.native.png" alt="pwa vs native"></p>
+<h4 id="你应该选择谁-是-Native-还是-PWA"><a href="#你应该选择谁-是-Native-还是-PWA" class="headerlink" title="你应该选择谁, 是 Native 还是 PWA"></a>你应该选择谁, 是 Native 还是 PWA</h4><p>作为企业家, 如果你正在为用户创造一款基础应用, 则应考虑构建 PWA。它不需要你的用户下载应用, 并且你可以通过推送通知轻松地与他们交互  </p>
+<p>如果你有时间限制并且想要节省成本, 那么 PWA 是一个不错的选择, 因为开发渐进式 Web 应用所需的时间和成本更少  </p>
+<p>PWA 可以覆盖更广泛的受众, 因此如果你正在寻找一款可以提高品牌知名度的应用, 那么这类应用将是你的理想选择  </p>
+<p>如果你想要的是可靠性很高的应用, 那么 Native 就能满足你的需求。众所周知, Native 可提供更高的安全性  </p>
+<p>Native 程序可以提供更强的计算能力和更好的 UX 选项, 例如地理围栏和传感器 / 检测能力  </p>
+<p>基于以上几点, 你就能判断到底应该选择 Native 还是 PWA。作出决定之前一定要先分析业务需求。两种类型的应用都是很有用的, 但它们满足的需求却有所不同  </p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p><a href="https://www.infoq.cn/article/1GsAwoz1aS5IXutDAwZo" target="_blank" rel="noopener">InfoQ 原文</a></p>
+]]></content>
+      <categories>
+        <category>news</category>
+      </categories>
+      <tags>
+        <tag>PWA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 verdaccio 搭建私有 NPM</title>
+    <url>/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/</url>
+    <content><![CDATA[<h3 id="为什么要搭建私有-NPM"><a href="#为什么要搭建私有-NPM" class="headerlink" title="为什么要搭建私有 NPM"></a>为什么要搭建私有 NPM</h3><p>如果你有一些依赖包</p>
+<h3 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h3><p>我们以一个测试</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="https://verdaccio.org/" target="_blank" rel="noopener">Verdaccio home page</a><br>// <a href="https://github.com/verdaccio/verdaccio/blob/ebae410c8164ac3e42c73c9d7cec6a8162a74457/src/lib/utils.ts#L142" target="_blank" rel="noopener">https://github.com/verdaccio/verdaccio/blob/ebae410c8164ac3e42c73c9d7cec6a8162a74457/src/lib/utils.ts#L142</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>NPM@7 将支持 Mnorepo 特性</title>
+    <url>/NPM@7%20%E5%B0%86%E6%94%AF%E6%8C%81%20Mnorepo%20%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<p>从架构的角度来看, 将大型单体代码库拆分为较小的、独立封装的一系列模块通常是个好方法。从微服务到可复用组件库, 很多技术都很适合模块化。但从版本发布和源代码管理的角度来看, 它也可能是一场噩梦。</p>
+<a id="more"></a>
+
+<h4 id="NPM-存在的问题"><a href="#NPM-存在的问题" class="headerlink" title="NPM 存在的问题"></a>NPM 存在的问题</h4><p>当项目有数十乃至数百个代码存储库时, 发现工作也变得愈加困难。每当创建一个新的存储库, 所有人必须将其添加到自己的代码模块中。</p>
+<p>访问控制成了单调乏味的工作, 且容易出错, 尤其是得在”需要了解”的基础上一次一个地授予存储库访问权限, 实在令人头疼。新员工经常要经历无止境的依赖项地狱。每个访问请求都会引出它们需要访问的另外两个存储库来。</p>
+<p>高度模块化的架构也使版本控制变复杂了。我们可以让一系列相关模块的版本同步更新, 给它们做”快照”（例如 Babel 和 React 就是这么做的）。但要让人们为那么多的包做这种工作（还包括和他们没什么关系的包）就是在自找麻烦。</p>
+<p>包之间的依赖项重复会大大增加安装依赖项所需的时间。一些生态系统（特别是 npm）是高度模块化的。模块化会鼓励复用, 但也意味着某些包可能在你开发的每个包里都复制了一份。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>Monorepo 是针对这个问题的流行解决方案。它意味着你会将所有模块放在同一个代码存储库中, 而不是每个模块配一个代码存储库。然后开发者在开发应用时只用这个”monorepo”就够了。由于所需的内容都放在了一起, 发现、访问控制和版本控制工作都变得更加简单  </p>
+<p>显然, 代价就是你只能对所有代码做整体权限控制。但如果你能接受这一点, monorepo 就能在兼顾模块化所有优势的前提下提供非常简单的源代码管理方法  </p>
+<p>那么 monorepo 怎样搭配 npm 使用呢？最受欢迎的两大解决方案分别是 Yarn workspaces 和 lerna  </p>
+<h4 id="使用-lerna-实现-monorepo"><a href="#使用-lerna-实现-monorepo" class="headerlink" title="使用 lerna 实现 monorepo"></a>使用 lerna 实现 monorepo</h4><p>首先我们全局安装 lerna  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install-g lerna</span><br></pre></td></tr></table></figure>
+
+<p>接下来, 我们需要创建新的 lerna 存储库：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir monorepo_example  </span><br><span class="line">cdmonorepo_example  </span><br><span class="line">lerna init</span><br></pre></td></tr></table></figure>
+
+<p>查看 lerna.json 可以看到版本和包的定义位置  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat lerna.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;packages&quot;: [</span><br><span class="line">    &quot;packages&#x2F;*&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;version&quot;: &quot;0.0.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上所示, 我们的 monorepo 中所有包的版本都是 0.0.0。但是我们的 monorepo 中还没有任何包。在我们添加包之前应该先登录到我们的存储库, 以便 lerna 在每个新包上正确设置 publishConfig  </p>
+<p>如果你要发布在公共 npm 存储库之外的位置上（例如 Verdaccio）, 则首先需要设置你的存储库    </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$npm config set registry https:&#x2F;&#x2F;registry.npm.yourcompany.com</span><br></pre></td></tr></table></figure>
+
+<p>接下来, 我们用具有发布权限的用户登录到存储库中。如果你的包没有作用域, 则可以省略 -scope 标志  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$npm login -scope test</span><br></pre></td></tr></table></figure>
+
+<p>现在为我们的 monorepo 添加一些定域包（scoped package）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lerna create @test&#x2F; a</span><br><span class="line">lerna create @test&#x2F; b</span><br><span class="line">lerna create @test&#x2F; c</span><br></pre></td></tr></table></figure>
+
+<p>如果你为每个包选择了默认设置, 那么现在测试域内会有三个包（a、b、c）, 版本为 0.0.0。在更新版本之前, 我们需要提交已完成的工作的并为 git 创建一个远程连接：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add</span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line">git remote add origin git@github.com:username&#x2F;reponame.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>现在我们可以使用一个命令来更新所有包的版本  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lerna version major</span><br></pre></td></tr></table></figure>
+
+<p>此命令不仅会将每个包都更新到 1.0.0, 还会为你推送版本更新到 git。最后一步是将这些包发布到 npm。Lerna 用一个命令就能完成这个任务  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ lerna publish from-git</span><br></pre></td></tr></table></figure>
+
+<p>这条命令成功运行后, 你就成功将第一个 monorepo 中的所有包都发布到 npm 了  </p>
+<h4 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h4><p>用 Lerna 创建一个新的 monorepo   </p>
+<p>为我们的 monorepo 添加了三个新的定域包  </p>
+<p>更新了所有包的版本并使用一条命令提交给了 git  </p>
+<p>使用一条命令将所有包发布到了 npm 存储库   </p>
+<p>有关 Lerna 的更多信息, 包括解决重复问题的方案, 建议查阅他们提供优秀的 文档   </p>
+<h4 id="未来计划"><a href="#未来计划" class="headerlink" title="未来计划"></a>未来计划</h4><p>我们也很高兴地宣布, 我们计划为 npm@7 带来一流的 monorepo 支持。如果你在搭配 monorepo 使用 npm, 我们需要你的反馈！请告诉我们你对目前的 monorepo 解决方案的看法。</p>
+]]></content>
+      <categories>
+        <category>news</category>
+      </categories>
+      <tags>
+        <tag>NPM</tag>
+        <tag>menorepo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 WireShark 抓包 HTTP2</title>
+    <url>/%E4%BD%BF%E7%94%A8WireShark%E6%8A%93%E5%8C%85HTTP2/</url>
+    <content><![CDATA[<p>如果我们要使用 HTTP2, 我们要怎么来对 HTTP2 的流量进行分析呢, 本文将介绍如何配置 WireShark 来抓包 HTTP2</p>
+<a id="more"></a>
+
+<h4 id="HTTP2-使用现状"><a href="#HTTP2-使用现状" class="headerlink" title="HTTP2 使用现状"></a>HTTP2 使用现状</h4><p>HTTP2 (超文本传输协议2) 2015年5月份正式发表。 HTTP2 保留了 1.1 的大部分语义, 不会破坏现有工作, 同时加入的新特性使程序可以有更好的加载速度  </p>
+<p>据 Myssl 的统计, 至6月份国内 HTTP2 的使用站点已经超过了 <strong>50%</strong></p>
+<p><img src="/images/posts/http2.statistic.png" alt="http2 statistic"></p>
+<p>那么抓包 HTTP2 的请求, 可以使用 WireShark 来进行分析调试<br>WireShark 是一个强大的网络封包分析工具, 新版 Wireshark 增加了对 HTTP2 的支持<br>下载地址 <a href="https://www.wireshark.org/#download" target="_blank" rel="noopener">https://www.wireshark.org/#download</a></p>
+<h4 id="配置-WireShark-调式-HTTP2"><a href="#配置-WireShark-调式-HTTP2" class="headerlink" title="配置 WireShark 调式 HTTP2"></a>配置 WireShark 调式 HTTP2</h4><p>打开 WireShark, 选择一个网卡  </p>
+<p><img src="/images/posts/capture.jpg" alt="capture"></p>
+<p>如果不确定哪个网卡, 在工具栏上点击  <strong>捕获 &gt; 选项</strong></p>
+<p><img src="/images/posts/capture.net.card.jpg" alt="capture"></p>
+<p>WireShare 抓包原理是<strong>读取网卡数据</strong>, 想要解密 HTTPS 数据, 可以通过以下方法配置<br>我们知道 TLS 完成握手之后会保存 session ticket 以便恢复时可以快速会话。Chrome 支持将会话密钥保存在外部文件。前提是系统存在一个变量 <strong>SSLKEYLOGFILE</strong>, 配置并重启浏览器</p>
+<p><img src="/images/posts/system.var.jpg" alt="system.var"></p>
+<p>配置 WireShark, 编辑 &gt; 首选项 &gt; Protocols &gt; TLS<br><strong>Pre-Master-Secret log filename</strong> 对应系统变量 SSLKEYLOGFILE 配置的文件地址<br>TLS debug file 是调试日志, 可以配置上, 具体如下图</p>
+<p><img src="/images/posts/wireshark.tls.set.jpg" alt="wireshark.tls.set"></p>
+<p>配置成功后可以直接设置过滤 HTTP2 请求  </p>
+<p><img src="/images/posts/wireshark.filter.jpg" alt="wireshark.filter"></p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p><a href="https://zh.wikipedia.org/wiki/HTTP/2" target="_blank" rel="noopener">Wiki HTTP2</a><br><a href="https://wiki.wireshark.org/TLS#TLS_Decryption" target="_blank" rel="noopener">WireShark TLS Decryption</a></p>
+]]></content>
+      <categories>
+        <category>posts</category>
+      </categories>
+      <tags>
+        <tag>HTTP2</tag>
+        <tag>WireShark</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端安全-CSRF</title>
     <url>/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-CSRF/</url>
-    <content><![CDATA[<h3 id="什么是-CSRF"><a href="#什么是-CSRF" class="headerlink" title="什么是 CSRF"></a>什么是 CSRF</h3><p>CSRF (Cross-site request forgery) 跨站请求伪造。 冒用用户身份凭证, 对目标网站进行设置。</p>
-<h3 id="CSRF-的攻击过程"><a href="#CSRF-的攻击过程" class="headerlink" title="CSRF 的攻击过程"></a>CSRF 的攻击过程</h3><ul>
+    <content><![CDATA[<p>随着 Web 高速发展, 越来越多的线下业务都转移到线上。Web 程序变得越来越复杂同时安全也成为重中之重。本文将带你认识CSRF, 和其带来的严重危害, 应该如何来进行防御  </p>
+<a id="more"></a>
+
+<h4 id="什么是-CSRF"><a href="#什么是-CSRF" class="headerlink" title="什么是 CSRF"></a>什么是 CSRF</h4><p>CSRF (Cross-site request forgery) 跨站请求伪造。 冒用用户身份凭证, 对目标网站进行设置。</p>
+<h4 id="CSRF-的攻击过程"><a href="#CSRF-的攻击过程" class="headerlink" title="CSRF 的攻击过程"></a>CSRF 的攻击过程</h4><ul>
 <li>用户登录了 a.com, 浏览器保留了登录凭证</li>
 <li>攻击者引诱用户访问攻击网站 b.com</li>
 <li>b.com 向 a.com 发出了一个请求, 例如: a.com?add-user=xxxxxx</li>
@@ -12,7 +198,9 @@
 <li>a.com 执行了操作 add-user</li>
 <li>攻击完成, 用户并不知道</li>
 </ul>
-<h3 id="攻击类型"><a href="#攻击类型" class="headerlink" title="攻击类型"></a>攻击类型</h3><ul>
+<!-- more -->
+
+<h4 id="攻击类型"><a href="#攻击类型" class="headerlink" title="攻击类型"></a>攻击类型</h4><ul>
 <li><p>Get 类型</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;https:&#x2F;&#x2F;bank.com?act&#x3D;xxx&quot;&gt;</span><br></pre></td></tr></table></figure>
 <p>用户访问页面带有如上图片, 浏览器自动请求地址, 攻击完成  </p>
@@ -26,15 +214,15 @@
 <p>链接类型比较少见, 比起前两种一打开页面就中招, 这种还需要用户进行点击, 才能完成攻击<br>这种类型比较可能出现在社区网站或者论坛, 直接发起同域攻击或者跳到攻击页面<br>这也是社区网站对外链都是严格控制或者不可以发布外链的原因</p>
 </li>
 </ul>
-<h3 id="攻击场景"><a href="#攻击场景" class="headerlink" title="攻击场景"></a>攻击场景</h3><p>有一天, 小明登录了 Gmail 邮箱, 悠闲的看着邮件。 突然收到了一封陌生邮件, 特价甩卖, 比特币 888 元一个。<br>英明神武的小明肯定不相信, 但还是点开了链接进去瞧瞧。进入后是一个空页面, 于是小明关掉网页。<br>过了一段时间, 小明突然发现自己某网站的密码被修改了, 里面的金币也被消费完了。<br>修改密码需要通过邮箱, 小明回想起之前的奇怪邮件, 找回那个空白页面, 打开源码一看 </p>
+<h4 id="攻击场景"><a href="#攻击场景" class="headerlink" title="攻击场景"></a>攻击场景</h4><p>有一天, 小明登录了 Gmail 邮箱, 悠闲的看着邮件。 突然收到了一封陌生邮件, 特价甩卖, 比特币 888 元一个。<br>英明神武的小明肯定不相信, 但还是点开了链接进去瞧瞧。进入后是一个空页面, 于是小明关掉网页。<br>过了一段时间, 小明突然发现自己某网站的密码被修改了, 里面的金币也被消费完了。<br>修改密码需要通过邮箱, 小明回想起之前的奇怪邮件, 找回那个空白页面, 打开源码一看 </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;form method&#x3D;&quot;POST&quot; action&#x3D;&quot;https:&#x2F;&#x2F;mail.google.com&#x2F;mail&#x2F;h&#x2F;ewt1jmuj4ddv&#x2F;?v&#x3D;prf&quot; enctype&#x3D;&quot;multipart&#x2F;form-data&quot;&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;cf2_emc&quot; value&#x3D;&quot;true&quot;&#x2F;&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;cf2_email&quot; value&#x3D;&quot;evilinbox@mail.com&quot;&#x2F;&gt; </span><br><span class="line">    &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;cf1_from&quot; value&#x3D;&quot;&quot;&#x2F;&gt; </span><br><span class="line">&lt;&#x2F;form&gt; </span><br><span class="line">&lt;script&gt; </span><br><span class="line">    document.forms[0].submit();</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 <p>这个页面提交了一个请求, 添加了一个过滤规则, 所有邮件都将转发至 evilinbox#mail.com<br>看似风平浪静的页面, 其实黑客已经得手了(所以为什么点开邮件的链接会有安全提示)。<br>这是一个真实的攻击页面 <a href="https://www.gnucitizen.org/blog/google-gmail-e-mail-hijack-technique/" target="_blank" rel="noopener">Google Gmail E-mail Hijack Technique</a>   </p>
-<h3 id="CSRF-特点"><a href="#CSRF-特点" class="headerlink" title="CSRF 特点"></a>CSRF 特点</h3><ul>
+<h4 id="CSRF-特点"><a href="#CSRF-特点" class="headerlink" title="CSRF 特点"></a>CSRF 特点</h4><ul>
 <li>攻击一般从第三方发起, 也有可能本域发起</li>
 <li>攻击者只能冒用用户凭证进行操作, 无法窃取数据</li>
 <li>需要诱导用户进入攻击网站</li>
 </ul>
-<h3 id="防御策略"><a href="#防御策略" class="headerlink" title="防御策略"></a>防御策略</h3><p>从攻击原理看, 我们并没有办法阻止CSRF攻击的发生, 但是我们可以针对CSRF的特点进行防御  </p>
+<h4 id="防御策略"><a href="#防御策略" class="headerlink" title="防御策略"></a>防御策略</h4><p>从攻击原理看, 我们并没有办法阻止CSRF攻击的发生, 但是我们可以针对CSRF的特点进行防御  </p>
 <p><strong>1. Referer</strong></p>
 <p>CSRF 攻击一般从第三方发起, 针对这一特点, 可以通过阻止外域调用来进行防御<br>浏览器在发起请求时会在头部添加 referer 字段, 表示来源。可以通过判断 referer 来判断请求是否从外域发起, 并拒绝请求。例如这样一个接口 POST bank.com?transfer=1000, 黑客从第三方 hacku.com 发起时, referer 是指向该域名的  </p>
 <p>这种方法只需要后端进行过滤, 前端不用处理, 实施起来比较简单。但这并不是一个可靠的办法, referer 字段是由浏览器添加上去的, 我们不能将安全都寄托在浏览器  </p>
@@ -95,10 +283,13 @@
 <p>如果设置了 strict, 浏览器任何跨域都不会携带 cookie, 即使跳转进入也不会携带。 那也就没有 CSRF 攻击的机会了。 对于子域的跳转, cookie 也不会保留, 用户必须重新登录, 对于用户来讲体验不好</p>
 <p>如果设置 lax, 则外部跳转时会保留 cookie。 用户从外部或则子域进来时不需要重新登录</p>
 <p>SameSite不支持子域名, 但项目很常见的一种情况, 站点和接口不同域名, 例如 a.com 接口地址是 api.a.com。对于这种情况就不能通过SameSite来防御, 但如果相同的话 SameSite 实施也比较方便</p>
-<h3 id="一些历史事件"><a href="#一些历史事件" class="headerlink" title="一些历史事件"></a>一些历史事件</h3><p><a href="https://www.davidairey.com/google-gmail-security-hijack/" target="_blank" rel="noopener">Gmail security hijack</a><br><a href="https://cloud.tencent.com/developer/article/1425657" target="_blank" rel="noopener">Youtube notifications</a><br><a href="https://blog.ripstech.com/2019/wordpress-csrf-to-rce/" target="_blank" rel="noopener">wordpress CSRF to Remote Code Execution</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>CSRF 是一种危害较大的攻击, 以上防御方法可以很大程度的防御攻击。各方法的实施难度, 效果, 适用情况都不同。 没有完美的解决方案, 我们只能通过实际情况选择最合适的方法。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="noopener">Wiki CSRF</a><br><a href="https://www.ibm.com/developerworks/cn/web/1102_niugang_csrf/" target="_blank" rel="noopener">IBM CSRF 攻击的应对之道</a><br><a href="hhttps://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies#SameSite_Cookies">MDN SameSite Cookie</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">MDN Same-origin-policy</a></p>
+<h4 id="一些历史事件"><a href="#一些历史事件" class="headerlink" title="一些历史事件"></a>一些历史事件</h4><p><a href="https://www.davidairey.com/google-gmail-security-hijack/" target="_blank" rel="noopener">Gmail security hijack</a><br><a href="https://cloud.tencent.com/developer/article/1425657" target="_blank" rel="noopener">Youtube notifications</a><br><a href="https://blog.ripstech.com/2019/wordpress-csrf-to-rce/" target="_blank" rel="noopener">wordpress CSRF to Remote Code Execution</a></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>CSRF 是一种危害较大的攻击, 以上防御方法可以很大程度的防御攻击。各方法的实施难度, 效果, 适用情况都不同。 没有完美的解决方案, 我们只能通过实际情况选择最合适的方法。</p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p><a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="noopener">Wiki CSRF</a><br><a href="https://www.ibm.com/developerworks/cn/web/1102_niugang_csrf/" target="_blank" rel="noopener">IBM CSRF 攻击的应对之道</a><br><a href="hhttps://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies#SameSite_Cookies">MDN SameSite Cookie</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">MDN Same-origin-policy</a></p>
 ]]></content>
+      <categories>
+        <category>posts</category>
+      </categories>
       <tags>
         <tag>前端安全</tag>
         <tag>CSRF</tag>
