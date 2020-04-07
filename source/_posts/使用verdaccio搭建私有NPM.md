@@ -89,7 +89,7 @@ packages:
 
 ```
 listen:
-https://localhost:9384
+  https://localhost:9384
 ```
 
 开启https [https 详细配置](https://verdaccio.org/docs/zh-CN/ssl)
@@ -103,7 +103,7 @@ https:
 
 #### 如何使用
 
-先配置 registry 
+先配置 registry, 也可以使用 nrm 来管理 registry
 
 ```
 npm config set registry https://npm.yourhost.com
@@ -130,6 +130,8 @@ npm unpublish
   "name": "@company/vue-host-editer"
 }
 ```
+
+这是一份 verdaccio 的配置样例 [verdaccio configure example](https://github.com/besfro/code-war/blob/example/verdaccio%20configure.ymal)
 
 
 PS: NPM 解决了模块管理问题, 但对管理更新并没有解决的方案, 如果项目数量和依赖模块达到一定数量, 那将是地狱。 verdaccio 也支持 monorepo 管理模式 [Configure to Verdaccio Monorepo](https://github.com/verdaccio/monorepo/blob/master/CONTRIBUTING.md)
