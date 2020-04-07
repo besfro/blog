@@ -139,5 +139,5 @@ PS: NPM 解决了模块管理问题, 但对管理更新并没有解决的方案,
 
 #### 参考文献
 [Verdaccio home page](https://verdaccio.org/)
-// https://github.com/verdaccio/verdaccio/blob/ebae410c8164ac3e42c73c9d7cec6a8162a74457/src/lib/utils.ts#L142
+[Verdaccio Configure](https://verdaccio.org/docs/zh-CN/configuration)
 [Verdaccio Monorepo](https://github.com/verdaccio/monorepo/blob/master/CONTRIBUTING.md)
