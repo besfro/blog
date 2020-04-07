@@ -15,9 +15,11 @@ NPM (node 包管理器), 用来解决模块管理问题。这使得用们可以�
 这里使用 verdaccio 来搭建。 这是一个从 sinopia frok 过来的一个项目, 目前第4个版本
 
 #### 安装
+
 ```
 npm i -g verdaccio
 ```
+
 安装完运行 verdaccio 
 
 ![运行](/images/posts/verdaccio.run.jpg)
@@ -25,22 +27,29 @@ npm i -g verdaccio
 第一次执行会生成一个 config 文件  
 
 #### 配置 config
+
 ```
 storage: ./storage       // 这里会缓存安装过的文件, 下次安装不用到 upstream 
 plugins: ./plugins       // 插件
 web:
   title: Verdaccio       // 标题
 
+```
+
+配置用户和可添加最大用户数, 通过 npm adduser 会在目录下生成 htpasswd 文件  
+
+```
 auth:
   htpasswd:
     file: ./htpasswd    // 这里记录这用户名和密码 .e.g. clc:$6B6QAAfdF:autocreated 2019-03-28T18:18:47.022Z
     max_users: 1000     // 用户上限  设置为 -1 禁止添加
+```
 
-# a list of other known repositories we can talk to
-// 这里配置上游, 可以配置多个
-// 你可以为不同的组指定上游, 这将决定包会从哪里下载, 或上传到哪里
+配置上游, 可以配置多个。可以为不同的组分配上游, 这将决定包会从哪里下载, 上传到哪里  
+
+```
 uplinks:
-  taobaoNpm:
+  taobao:
     url: https://registry.npm.taobao.org/     // url
     max_fails: 5                              // 失败重试次数
     fail_timeout: 2m                          // 超时时间
@@ -48,38 +57,79 @@ uplinks:
     url: https://registry.npmjs.org/
     max_fails: 5
     fail_timeout: 2m
+```
 
-// 
+配置包地址前缀, 这里建议配上
+
+``` 
 url_prefix: /verdaccio/
+```
 
+包分组, 这是一个强大的分组功能。可以配置多个作用域, 并配置权限、上游  
+例如可以为公司内部包分配一个作用域 @company, 配置可发包用户, 可下载用户  
+外部域可以配置 proxy 上传到 npm 或则 cnpm
+
+```
 packages:
   '**':
-    # scoped packageslisten:
-  https://localhost:9981
+    access: $all  // username-用户名、$authenticated-登陆验证、$all
+    publish: $authenticated
+    unpublish: $authenticated
+    proxy: npmjs  // 上游
 
+  '@company/*':
+    access: $authenticated
+    publish: admin
+    unpublish: $authenticated
+
+```
+[Packages 详细配置](https://verdaccio.org/docs/zh-CN/packages)
+
+配置监听地址
+
+```
+listen:
+https://localhost:9384
+```
+
+开启https [https 详细配置](https://verdaccio.org/docs/zh-CN/ssl)
+
+```
 https:
   key:  /root/.config/verdaccio/verdaccio-key.pem
   cert: /root/.config/verdaccio/verdaccio-cert.pem
   ca:   /root/.config/verdaccio/verdaccio-csr.pem
-
-    access: $all
-    publish: $authenticated
-    unpublish: $authenticated
-    #proxy: npmjs
-
-  '@st*':
-    access: $authenticated
-    publish: $authenticated
-    unpublish: $authenticated
-
-
-
 ```
-###
 
 #### 如何使用
 
-#### nginx 反向代理
+先配置 registry 
+
+```
+npm config set registry https://npm.yourhost.com
+```
+
+添加用户, 登陆
+
+```
+npm adduser
+npm login
+```
+
+发布删除包
+
+```
+npm publish
+npm unpublish
+```
+
+发布到内部域, 配置包 pageage.json
+
+```
+{
+  "name": "@company/vue-host-editer"
+}
+```
 
 
 PS: NPM 解决了模块管理问题, 但对管理更新并没有解决的方案, 如果项目数量和依赖模块达到一定数量, 那将是地狱。 verdaccio 也支持 monorepo 管理模式 [Configure to Verdaccio Monorepo](https://github.com/verdaccio/monorepo/blob/master/CONTRIBUTING.md)
