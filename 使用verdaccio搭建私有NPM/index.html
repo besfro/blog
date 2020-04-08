@@ -1,480 +1,339 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.clc.zone","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"right","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="为什么要搭建私有 NPM如果你有一些依赖包 开始搭建我们以一个测试 参考文献Verdaccio home page&#x2F;&#x2F; https:&#x2F;&#x2F;github.com&#x2F;verdaccio&#x2F;verdaccio&#x2F;blob&#x2F;ebae410c8164ac3e42c73c9d7cec6a8162a74457&#x2F;src&#x2F;lib&#x2F;utils.ts#L142">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="本篇分享如何搭建一个私有 NPM 服务来管理内部模块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 verdaccio 搭建私有 NPM">
-<meta property="og:url" content="https://blog.clc.zone/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/index.html">
+<meta property="og:url" content="https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/index.html">
 <meta property="og:site_name" content="Clcc Blog">
-<meta property="og:description" content="为什么要搭建私有 NPM如果你有一些依赖包 开始搭建我们以一个测试 参考文献Verdaccio home page&#x2F;&#x2F; https:&#x2F;&#x2F;github.com&#x2F;verdaccio&#x2F;verdaccio&#x2F;blob&#x2F;ebae410c8164ac3e42c73c9d7cec6a8162a74457&#x2F;src&#x2F;lib&#x2F;utils.ts#L142">
+<meta property="og:description" content="本篇分享如何搭建一个私有 NPM 服务来管理内部模块">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.clcc.dev/images/posts/verdaccio.run.jpg">
 <meta property="article:published_time" content="2019-09-27T17:06:18.000Z">
-<meta property="article:modified_time" content="2020-04-03T01:58:28.854Z">
+<meta property="article:modified_time" content="2020-04-08T16:20:54.453Z">
 <meta property="article:author" content="Iam clc c">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="Web前端">
-<meta property="article:tag" content="前端blog">
-<meta property="article:tag" content="clc">
-<meta property="article:tag" content="front-end">
+<meta property="article:tag" content="verdaccio">
+<meta property="article:tag" content="npm">
 <meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://blog.clc.zone/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>使用 verdaccio 搭建私有 NPM | Clcc Blog</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta custom-logo">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Clcc Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">clcc front-end blog</h1>
-      
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-posts">
-
-    <a href="/categories/posts/" rel="section"><i class="fa fa-fw fa-pencil"></i>文章</a>
-
-  </li>
-        <li class="menu-item menu-item-news">
-
-    <a href="/categories/news/" rel="section"><i class="fa fa-fw fa-flag"></i>动态</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-
-</nav>
-  <div class="site-search">
-    <div class="search-pop-overlay">
-  <div class="popup search-popup">
-      <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-  </div>
-</div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.clc.zone/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Iam clc c">
-      <meta itemprop="description" content="Web Developer (FE)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Clcc Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          使用 verdaccio 搭建私有 NPM
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-09-28 01:06:18" itemprop="dateCreated datePublished" datetime="2019-09-28T01:06:18+08:00">2019-09-28</time>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>160</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
+<meta name="twitter:image" content="https://blog.clcc.dev/images/posts/verdaccio.run.jpg">
     
     
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h3 id="为什么要搭建私有-NPM"><a href="#为什么要搭建私有-NPM" class="headerlink" title="为什么要搭建私有 NPM"></a>为什么要搭建私有 NPM</h3><p>如果你有一些依赖包</p>
-<h3 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h3><p>我们以一个测试</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="https://verdaccio.org/" target="_blank" rel="noopener">Verdaccio home page</a><br>// <a href="https://github.com/verdaccio/verdaccio/blob/ebae410c8164ac3e42c73c9d7cec6a8162a74457/src/lib/utils.ts#L142" target="_blank" rel="noopener">https://github.com/verdaccio/verdaccio/blob/ebae410c8164ac3e42c73c9d7cec6a8162a74457/src/lib/utils.ts#L142</a></p>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
         
-
-
+          
+              <link rel="shortcut icon" href="/images/favicon-32x32.png">
+          
         
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/NPM@7%20%E5%B0%86%E6%94%AF%E6%8C%81%20Mnorepo%20%E7%89%B9%E6%80%A7/" rel="prev" title="NPM@7 将支持 Mnorepo 特性">
-      <i class="fa fa-chevron-left"></i> NPM@7 将支持 Mnorepo 特性
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/" rel="next" title="PWA 对比 Native 谁更胜一筹">
-      PWA 对比 Native 谁更胜一筹 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
+        
+          
+            <link rel="icon" type="image/png" href="/images/apple-touch-icon.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
     
-  </article>
-  
-  
-  
+    <!-- title -->
+    <title>使用 verdaccio 搭建私有 NPM</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-  </div>
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
 
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="Clcc Blog" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
       </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要搭建私有-NPM"><span class="nav-number">1.</span> <span class="nav-text">为什么要搭建私有 NPM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始搭建"><span class="nav-number">2.</span> <span class="nav-text">开始搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Iam clc c"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">Iam clc c</p>
-  <div class="site-description" itemprop="description">Web Developer (FE)</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
         
-          <span class="site-state-item-count">7</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/besfro" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;besfro" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:Lengchars@gmail.com" title="E-Mail → mailto:Lengchars@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
-      </span>
-  </div>
-
-
-
-      </div>
+        <li><a class="icon" href="/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/NPM@7%20%E5%B0%86%E6%94%AF%E6%8C%81%20Mnorepo%20%E7%89%B9%E6%80%A7/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&text=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&is_video=false&description=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用 verdaccio 搭建私有 NPM&body=Check out this article: https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&name=使用 verdaccio 搭建私有 NPM&description=&lt;p&gt;本篇分享如何搭建一个私有 NPM 服务来管理内部模块 &lt;/p&gt;" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&t=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 2019 – 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-superpowers"></i>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要搭建私有-NPM"><span class="toc-number">1.</span> <span class="toc-text">为什么要搭建私有 NPM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-config"><span class="toc-number">3.</span> <span class="toc-text">配置 config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用"><span class="toc-number">4.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+    </div>
   </span>
-  <span class="author" itemprop="copyrightHolder">Clcs Blog</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        使用 verdaccio 搭建私有 NPM
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Clcc Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-27T17:06:18.000Z" itemprop="datePublished">2019-09-28</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/posts/">posts</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/npm/" rel="tag">npm</a>, <a class="tag-link" href="/tags/verdaccio/" rel="tag">verdaccio</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本篇分享如何搭建一个私有 NPM 服务来管理内部模块 </p>
+<a id="more"></a>
+
+<h2 id="为什么要搭建私有-NPM"><a href="#为什么要搭建私有-NPM" class="headerlink" title="为什么要搭建私有 NPM"></a>为什么要搭建私有 NPM</h2><p>NPM (node 包管理器), 用来解决模块管理问题。这使得用们可以很方便的去使用和管理一个模块。NPM 上的包是公开的, 所有人都可以下载。 内部的模块并不能发布到 NPM 上, 那么就需要一个私有的 NPM 来管理内部模块  </p>
+<p>这里使用 verdaccio 来搭建。 这是一个从 sinopia frok 过来的一个项目, 目前第4个版本</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">i</span> <span class="string">-g</span> <span class="string">verdaccio</span></span><br></pre></td></tr></table></figure>
+
+<p>安装完运行 verdaccio </p>
+<p><img src="/images/posts/verdaccio.run.jpg" alt="运行"></p>
+<p>第一次执行会生成一个 config 文件  </p>
+<h2 id="配置-config"><a href="#配置-config" class="headerlink" title="配置 config"></a>配置 config</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">storage:</span> <span class="string">./storage</span>       <span class="string">//</span> <span class="string">这里会缓存安装过的文件,</span> <span class="string">下次安装不用到</span> <span class="string">upstream</span> </span><br><span class="line"><span class="attr">plugins:</span> <span class="string">./plugins</span>       <span class="string">//</span> <span class="string">插件</span></span><br><span class="line"><span class="attr">web:</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">Verdaccio</span>       <span class="string">//</span> <span class="string">标题</span></span><br></pre></td></tr></table></figure>
+
+<p>配置用户和可添加最大用户数, 通过 npm adduser 会在目录下生成 htpasswd 文件  </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auth:</span></span><br><span class="line">  <span class="attr">htpasswd:</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">./htpasswd</span>    <span class="string">//</span> <span class="string">这里记录这用户名和密码</span> </span><br><span class="line">                        <span class="string">//</span> <span class="string">.e.g.</span> <span class="string">clc:$6B6QAAfdF:autocreated</span> <span class="attr">2019-03-28T18:</span></span><br><span class="line">    </span><br><span class="line">    <span class="attr">max_users:</span> <span class="number">1000</span>     <span class="string">//</span> <span class="string">用户上限</span>  <span class="string">设置为</span> <span class="number">-1</span> <span class="string">禁止添加</span></span><br></pre></td></tr></table></figure>
+
+<p>配置上游, 可以配置多个。可以为不同的组分配上游, 这将决定包会从哪里下载, 上传到哪里  </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">uplinks:</span></span><br><span class="line">  <span class="attr">taobao:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://registry.npm.taobao.org/</span>     <span class="string">//</span> <span class="string">url</span></span><br><span class="line">    <span class="attr">max_fails:</span> <span class="number">5</span>                              <span class="string">//</span> <span class="string">失败重试次数</span></span><br><span class="line">    <span class="attr">fail_timeout:</span> <span class="string">2m</span>                          <span class="string">//</span> <span class="string">超时时间</span></span><br><span class="line">  <span class="attr">npmjs:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://registry.npmjs.org/</span></span><br><span class="line">    <span class="attr">max_fails:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">fail_timeout:</span> <span class="string">2m</span></span><br></pre></td></tr></table></figure>
+
+<p>配置包地址前缀, 这里建议配上</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">url_prefix:</span> <span class="string">/verdaccio/</span></span><br></pre></td></tr></table></figure>
+
+<p>包分组, 这是一个强大的分组功能。可以配置多个作用域, 并配置权限、上游<br>例如可以为公司内部包分配一个作用域 @company, 配置可发包用户, 可下载用户<br>外部域可以配置 proxy 上传到 npm 或则 cnpm</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="string">'**'</span><span class="string">:</span></span><br><span class="line">    <span class="attr">access:</span> <span class="string">$all</span>  <span class="string">//</span> <span class="string">username-用户名、$authenticated-登陆验证、$all</span></span><br><span class="line">    <span class="attr">publish:</span> <span class="string">$authenticated</span></span><br><span class="line">    <span class="attr">unpublish:</span> <span class="string">$authenticated</span></span><br><span class="line">    <span class="attr">proxy:</span> <span class="string">npmjs</span>  <span class="string">//</span> <span class="string">上游</span></span><br><span class="line"></span><br><span class="line">  <span class="string">'@company/*'</span><span class="string">:</span></span><br><span class="line">    <span class="attr">access:</span> <span class="string">$authenticated</span></span><br><span class="line">    <span class="attr">publish:</span> <span class="string">admin</span></span><br><span class="line">    <span class="attr">unpublish:</span> <span class="string">$authenticated</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://verdaccio.org/docs/zh-CN/packages" target="_blank" rel="noopener">Packages 详细配置</a></p>
+<p>配置监听地址</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">listen:</span></span><br><span class="line">  <span class="string">https://localhost:9384</span></span><br></pre></td></tr></table></figure>
+
+<p>开启https <a href="https://verdaccio.org/docs/zh-CN/ssl" target="_blank" rel="noopener">https 详细配置</a></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">https:</span></span><br><span class="line">  <span class="attr">key:</span>  <span class="string">/root/.config/verdaccio/verdaccio-key.pem</span></span><br><span class="line">  <span class="attr">cert:</span> <span class="string">/root/.config/verdaccio/verdaccio-cert.pem</span></span><br><span class="line">  <span class="attr">ca:</span>   <span class="string">/root/.config/verdaccio/verdaccio-csr.pem</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>先配置 registry, 也可以使用 nrm 来管理 registry</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">config</span> <span class="string">set</span> <span class="string">registry</span> <span class="string">https://npm.yourhost.com</span></span><br></pre></td></tr></table></figure>
+
+<p>添加用户, 登陆</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">adduser</span></span><br><span class="line"><span class="string">npm</span> <span class="string">login</span></span><br></pre></td></tr></table></figure>
+
+<p>发布删除包</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">publish</span></span><br><span class="line"><span class="string">npm</span> <span class="string">unpublish</span></span><br></pre></td></tr></table></figure>
+
+<p>发布到内部域, 配置包 pageage.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"@company/vue-host-editer"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一份 verdaccio 的配置样例 <a href="https://github.com/besfro/code-war/blob/example/verdaccio%20configure.ymal" target="_blank" rel="noopener">verdaccio configure example</a></p>
+<p>PS: NPM 解决了模块管理问题, 但对管理更新并没有解决的方案, 如果项目数量和依赖模块达到一定数量, 那将是地狱。 verdaccio 也支持 monorepo 管理模式 <a href="https://github.com/verdaccio/monorepo/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Configure to Verdaccio Monorepo</a></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://verdaccio.org/" target="_blank" rel="noopener">Verdaccio home page</a><br><a href="https://verdaccio.org/docs/zh-CN/configuration" target="_blank" rel="noopener">Verdaccio Configure</a><br><a href="https://github.com/verdaccio/monorepo/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Verdaccio Monorepo</a>  </p>
+
   </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
+</article>
+
+
 
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要搭建私有-NPM"><span class="toc-number">1.</span> <span class="toc-text">为什么要搭建私有 NPM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-config"><span class="toc-number">3.</span> <span class="toc-text">配置 config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用"><span class="toc-number">4.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&text=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&is_video=false&description=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用 verdaccio 搭建私有 NPM&body=Check out this article: https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&title=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&name=使用 verdaccio 搭建私有 NPM&description=&lt;p&gt;本篇分享如何搭建一个私有 NPM 服务来管理内部模块 &lt;/p&gt;" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.clcc.dev/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/&t=使用 verdaccio 搭建私有 NPM" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
 </div>
 
-
-
-
-
-
-
-
-      </div>
-    </footer>
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2020
+    Iam clc c
   </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/lib/clipboard/clipboard.min.js"></script>
 
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Google Analytics -->
 
+<!-- Baidu Analytics -->
 
+<!-- Disqus Comments -->
 
-
-
-
-
-
-
-  
-
-  
 
 </body>
 </html>

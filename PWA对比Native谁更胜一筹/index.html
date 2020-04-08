@@ -1,286 +1,178 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.clc.zone","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"right","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="自诞生以来, 渐进式 Web 应用 (PWA) 已经取得了可观的成就。PWA 的加载速度比其他应用更快, 并且它们的体积也不大。你知道优步的 PWA 在 2G 网络上只需 3 秒钟即可加载完毕吗">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="自诞生以来, 渐进式 Web 应用 (PWA) 已经取得了可观的成就。PWA 的加载速度比其他应用更快, 并且它们的体积也不大。你知道优步的 PWA 在 2G 网络上只需 3 秒钟即可加载完毕吗">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PWA 对比 Native 谁更胜一筹">
-<meta property="og:url" content="https://blog.clc.zone/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/index.html">
+<meta property="og:url" content="https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/index.html">
 <meta property="og:site_name" content="Clcc Blog">
 <meta property="og:description" content="自诞生以来, 渐进式 Web 应用 (PWA) 已经取得了可观的成就。PWA 的加载速度比其他应用更快, 并且它们的体积也不大。你知道优步的 PWA 在 2G 网络上只需 3 秒钟即可加载完毕吗">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.clc.zone/images/posts/pwa.native.png">
-<meta property="og:image" content="https://blog.clc.zone/images/posts/pwa.vs.native.png">
+<meta property="og:image" content="https://blog.clcc.dev/images/posts/pwa.native.png">
+<meta property="og:image" content="https://blog.clcc.dev/images/posts/pwa.vs.native.png">
 <meta property="article:published_time" content="2020-03-06T10:28:17.000Z">
-<meta property="article:modified_time" content="2020-04-04T11:12:58.026Z">
+<meta property="article:modified_time" content="2020-04-08T16:01:55.460Z">
 <meta property="article:author" content="Iam clc c">
 <meta property="article:tag" content="PWA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.clc.zone/images/posts/pwa.native.png">
+<meta name="twitter:image" content="https://blog.clcc.dev/images/posts/pwa.native.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon-32x32.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/apple-touch-icon.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>PWA 对比 Native 谁更胜一筹</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<link rel="canonical" href="https://blog.clc.zone/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>PWA 对比 Native 谁更胜一筹 | Clcc Blog</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta custom-logo">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Clcc Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">clcc front-end blog</h1>
+    <!-- persian styles -->
+    
       
-  </div>
+<link rel="stylesheet" href="/css/rtl.css">
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="Clcc Blog" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/Javascript%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E7%9A%84/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&text=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&is_video=false&description=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PWA 对比 Native 谁更胜一筹&body=Check out this article: https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&name=PWA 对比 Native 谁更胜一筹&description=&lt;p&gt;自诞生以来, 渐进式 Web 应用 (PWA) 已经取得了可观的成就。PWA 的加载速度比其他应用更快, 并且它们的体积也不大。你知道优步的 PWA 在 &lt;strong&gt;2G&lt;/strong&gt; 网络上只需 &lt;strong&gt;3&lt;/strong&gt; 秒钟即可加载完毕吗&lt;/p&gt;" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&t=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
-  </div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-posts">
-
-    <a href="/categories/posts/" rel="section"><i class="fa fa-fw fa-pencil"></i>文章</a>
-
-  </li>
-        <li class="menu-item menu-item-news">
-
-    <a href="/categories/news/" rel="section"><i class="fa fa-fw fa-flag"></i>动态</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-
-</nav>
-  <div class="site-search">
-    <div class="search-pop-overlay">
-  <div class="popup search-popup">
-      <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA-的强大能力"><span class="toc-number">1.</span> <span class="toc-text">PWA 的强大能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA、Native-各有优点"><span class="toc-number">2.</span> <span class="toc-text">PWA、Native 各有优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA-vs-Native"><span class="toc-number">3.</span> <span class="toc-text">PWA vs Native</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#你应该选择谁-是-Native-还是-PWA"><span class="toc-number">4.</span> <span class="toc-text">你应该选择谁, 是 Native 还是 PWA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+    </div>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-  </div>
-</div>
-
-  </div>
-</div>
-    </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        PWA 对比 Native 谁更胜一筹
+    </h1>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Clcc Blog</span>
+      </span>
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.clc.zone/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/">
+    <div class="postdate">
+      
+        <time datetime="2020-03-06T10:28:17.000Z" itemprop="datePublished">2020-03-06</time>
+        
+      
+    </div>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Iam clc c">
-      <meta itemprop="description" content="Web Developer (FE)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Clcc Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          PWA 对比 Native 谁更胜一筹
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-06 18:28:17" itemprop="dateCreated datePublished" datetime="2020-03-06T18:28:17+08:00">2020-03-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/news/" itemprop="url" rel="index"><span itemprop="name">news</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>自诞生以来, 渐进式 Web 应用 (PWA) 已经取得了可观的成就。PWA 的加载速度比其他应用更快, 并且它们的体积也不大。你知道优步的 PWA 在 <strong>2G</strong> 网络上只需 <strong>3</strong> 秒钟即可加载完毕吗</p>
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/news/">news</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/PWA/" rel="tag">PWA</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>自诞生以来, 渐进式 Web 应用 (PWA) 已经取得了可观的成就。PWA 的加载速度比其他应用更快, 并且它们的体积也不大。你知道优步的 PWA 在 <strong>2G</strong> 网络上只需 <strong>3</strong> 秒钟即可加载完毕吗</p>
 <a id="more"></a>
 
-<h4 id="PWA-的强大能力"><a href="#PWA-的强大能力" class="headerlink" title="PWA 的强大能力"></a>PWA 的强大能力</h4><p>在将移动网站重建为 PWA 之后, Pinterest(<a href="https://www.infoq.cn/article/pinterest-progressive-web-app-performance-case-study" target="_blank" rel="noopener">详细案例</a>)  的参与度增加了 <strong>60％</strong>。<br>Tinder 的加载时间从 11.91 秒减少到 <strong>4.69 秒</strong>。<br>Bookmyshow 的 PWA 体积只有其 iOS 应用的 <strong>108</strong> 分之一, 是 Android 应用的 <strong>54</strong> 分之一。<br>你知道为什么 PWA 能做到这一切吗？在回答这个问题之前, 让我们先来了解 PWA 的含义：</p>
+<h2 id="PWA-的强大能力"><a href="#PWA-的强大能力" class="headerlink" title="PWA 的强大能力"></a>PWA 的强大能力</h2><p>在将移动网站重建为 PWA 之后, Pinterest(<a href="https://www.infoq.cn/article/pinterest-progressive-web-app-performance-case-study" target="_blank" rel="noopener">详细案例</a>)  的参与度增加了 <strong>60％</strong>。<br>Tinder 的加载时间从 11.91 秒减少到 <strong>4.69 秒</strong>。<br>Bookmyshow 的 PWA 体积只有其 iOS 应用的 <strong>108</strong> 分之一, 是 Android 应用的 <strong>54</strong> 分之一。<br>你知道为什么 PWA 能做到这一切吗？在回答这个问题之前, 让我们先来了解 PWA 的含义：</p>
 <p>渐进式 Web 应用 是使用 HTML、CSS 和 Javascript 等现代技术开发的。PWA 是能提供原生体验的网站。简而言之, 它们是 Web 应用。</p>
 <p>我们知道 PWA 是基于一个脚本运行的, 该脚本被称为 Service worker, 其在后台独立于网站运行。这种方法提供了定期的后台同步、推送通知和丰富的办公体验。</p>
 <p>对于应用开发人员来说, 开发这种应用是很容易的, 因为他们不需要像开发Native那样学习新的编程语言。不需要安装开发环境, 因为所有现代浏览器都支持 PWA。</p>
-<h4 id="PWA、Native-各有优点"><a href="#PWA、Native-各有优点" class="headerlink" title="PWA、Native 各有优点"></a>PWA、Native 各有优点</h4><p>PWA 的优点：渐进式 Web 应用速度快、可靠、能减少加载时间并提供出色的用户参与度。  </p>
+<h2 id="PWA、Native-各有优点"><a href="#PWA、Native-各有优点" class="headerlink" title="PWA、Native 各有优点"></a>PWA、Native 各有优点</h2><p>PWA 的优点：渐进式 Web 应用速度快、可靠、能减少加载时间并提供出色的用户参与度。  </p>
 <p>毫无疑问, 渐进式 Web 应用是有很多益处的。根据上面引用的一些数据, 它们也比Native更好。在分析Native与 PWA 的区别之前, 我们先来了解Native的含义。  </p>
 <p>Native程序 这个术语特指 iOS 和 Android 应用程序, 或所有其他类型的移动应用。这些应用是为特定平台构建的, 并使用专用的编程语言来编写。  </p>
 <p>这使它们能够在特定的操作系统上无缝运行, 因为它们使用了对应操作系统的工具和框架。当 Android 应用开发人员选择了要开发一款应用的平台（Android）后, 他们就会根据这个平台硬件的独特能力来编写代码。  </p>
 <p>Native的好处 包括稳健的安全特性、更少的电池消耗, 并且很容易在应用程序商店中展示上架。   </p>
-<h4 id="PWA-vs-Native"><a href="#PWA-vs-Native" class="headerlink" title="PWA vs Native"></a>PWA vs Native</h4><p>简单了解了这两种类型的应用程序后, 你认为哪种类型的应用更适合你的业务？下面我们来从业务的角度上对比这些应用。 </p>
+<h2 id="PWA-vs-Native"><a href="#PWA-vs-Native" class="headerlink" title="PWA vs Native"></a>PWA vs Native</h2><p>简单了解了这两种类型的应用程序后, 你认为哪种类型的应用更适合你的业务？下面我们来从业务的角度上对比这些应用。 </p>
 <p><img src="/images/posts/pwa.native.png" alt="pwa native compare"></p>
 <p>PWA 与 Native 对比 #1：用户体验<br>PWA 允许你在浏览器和设备上安装的应用中提供相同的界面, 它不需要用户去学习多个界面。另一方面, Native 需要更多的存储空间, 这会影响智能手机空间有限的用户, 削弱他们的用户体验。</p>
 <p>PWA 与 Native 对比 #2：安全性<br>与 PWA 不同, Native可以访问设备上的所有必要信息, 这些应用嵌入了可确保高度安全的传输层（TLS）证书。对于 PWA 来说, 这些应用需要自己的认证手段。</p>
@@ -289,229 +181,142 @@
 <p>PWA 与 Native 对比 #5：开发成本<br>开发 PWA 所需的时间非常少, 从而降低了总体开发成本。另一方面, Native的开发成本更高, 因为开发人员必须根据操作系统的新特性, 花费更多的时间和精力来更新应用。</p>
 <p>PWA 与 Native 对比 #6：在线可见性<br>从上文可知, Native 在应用商店中上架要容易得多。但由于 PWA 的天然属性, 它们在网络上获得关注度会更容易。由于 PWA 是模仿网站的应用, 你可以在互联网找到这些应用, 它们的可见性不只局限于应用商店。</p>
 <p><img src="/images/posts/pwa.vs.native.png" alt="pwa vs native"></p>
-<h4 id="你应该选择谁-是-Native-还是-PWA"><a href="#你应该选择谁-是-Native-还是-PWA" class="headerlink" title="你应该选择谁, 是 Native 还是 PWA"></a>你应该选择谁, 是 Native 还是 PWA</h4><p>作为企业家, 如果你正在为用户创造一款基础应用, 则应考虑构建 PWA。它不需要你的用户下载应用, 并且你可以通过推送通知轻松地与他们交互  </p>
+<h2 id="你应该选择谁-是-Native-还是-PWA"><a href="#你应该选择谁-是-Native-还是-PWA" class="headerlink" title="你应该选择谁, 是 Native 还是 PWA"></a>你应该选择谁, 是 Native 还是 PWA</h2><p>作为企业家, 如果你正在为用户创造一款基础应用, 则应考虑构建 PWA。它不需要你的用户下载应用, 并且你可以通过推送通知轻松地与他们交互  </p>
 <p>如果你有时间限制并且想要节省成本, 那么 PWA 是一个不错的选择, 因为开发渐进式 Web 应用所需的时间和成本更少  </p>
 <p>PWA 可以覆盖更广泛的受众, 因此如果你正在寻找一款可以提高品牌知名度的应用, 那么这类应用将是你的理想选择  </p>
 <p>如果你想要的是可靠性很高的应用, 那么 Native 就能满足你的需求。众所周知, Native 可提供更高的安全性  </p>
 <p>Native 程序可以提供更强的计算能力和更好的 UX 选项, 例如地理围栏和传感器 / 检测能力  </p>
 <p>基于以上几点, 你就能判断到底应该选择 Native 还是 PWA。作出决定之前一定要先分析业务需求。两种类型的应用都是很有用的, 但它们满足的需求却有所不同  </p>
-<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p><a href="https://www.infoq.cn/article/1GsAwoz1aS5IXutDAwZo" target="_blank" rel="noopener">InfoQ 原文</a></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.infoq.cn/article/1GsAwoz1aS5IXutDAwZo" target="_blank" rel="noopener">InfoQ 原文</a></p>
 
-    </div>
+  </div>
+</article>
 
-    
-    
-    
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/PWA/" rel="tag"><i class="fa fa-tag"></i> PWA</a>
-          </div>
-
-        
 
 
         
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/%E4%BD%BF%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM/" rel="prev" title="使用 verdaccio 搭建私有 NPM">
-      <i class="fa fa-chevron-left"></i> 使用 verdaccio 搭建私有 NPM
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/Javascript%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E7%9A%84/" rel="next" title="Javascript是如何执行一段代码的">
-      Javascript是如何执行一段代码的 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-  </div>
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
       </ul>
+    </div>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#PWA-的强大能力"><span class="nav-number">1.</span> <span class="nav-text">PWA 的强大能力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PWA、Native-各有优点"><span class="nav-number">2.</span> <span class="nav-text">PWA、Native 各有优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PWA-vs-Native"><span class="nav-number">3.</span> <span class="nav-text">PWA vs Native</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#你应该选择谁-是-Native-还是-PWA"><span class="nav-number">4.</span> <span class="nav-text">你应该选择谁, 是 Native 还是 PWA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA-的强大能力"><span class="toc-number">1.</span> <span class="toc-text">PWA 的强大能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA、Native-各有优点"><span class="toc-number">2.</span> <span class="toc-text">PWA、Native 各有优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA-vs-Native"><span class="toc-number">3.</span> <span class="toc-text">PWA vs Native</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#你应该选择谁-是-Native-还是-PWA"><span class="toc-number">4.</span> <span class="toc-text">你应该选择谁, 是 Native 还是 PWA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+    </div>
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Iam clc c"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">Iam clc c</p>
-  <div class="site-description" itemprop="description">Web Developer (FE)</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">7</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/besfro" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;besfro" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:Lengchars@gmail.com" title="E-Mail → mailto:Lengchars@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
-      </span>
-  </div>
-
-
-
-      </div>
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&text=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&is_video=false&description=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PWA 对比 Native 谁更胜一筹&body=Check out this article: https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&title=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&name=PWA 对比 Native 谁更胜一筹&description=&lt;p&gt;自诞生以来, 渐进式 Web 应用 (PWA) 已经取得了可观的成就。PWA 的加载速度比其他应用更快, 并且它们的体积也不大。你知道优步的 PWA 在 &lt;strong&gt;2G&lt;/strong&gt; 网络上只需 &lt;strong&gt;3&lt;/strong&gt; 秒钟即可加载完毕吗&lt;/p&gt;" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.clcc.dev/PWA%E5%AF%B9%E6%AF%94Native%E8%B0%81%E6%9B%B4%E8%83%9C%E4%B8%80%E7%AD%B9/&t=PWA 对比 Native 谁更胜一筹" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 2019 – 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-superpowers"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Clcs Blog</span>
-</div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a>
   </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </div>
 
-
-
-
-
-
-
-
-      </div>
-    </footer>
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2020
+    Iam clc c
   </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/tags/">标签</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/lib/clipboard/clipboard.min.js"></script>
 
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Google Analytics -->
 
+<!-- Baidu Analytics -->
 
+<!-- Disqus Comments -->
 
-
-
-
-
-
-
-  
-
-  
 
 </body>
 </html>
